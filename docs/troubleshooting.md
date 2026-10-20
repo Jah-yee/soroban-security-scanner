@@ -87,3 +87,17 @@ Open a discussion or issue on the
 [repository](https://github.com/AyinkxLab/soroban-security-scanner/issues). Do
 not report security vulnerabilities publicly; see
 [SECURITY.md](../SECURITY.md).
+
+## Findings appear on lines I didn't edit
+
+If a finding shows up on a line you didn't touch, that is expected.
+The scanner matches findings by **fingerprint**, not by line number.
+
+A fingerprint is computed from the rule id, the file path, and the normalized
+evidence text. The line number is deliberately **not** part of the fingerprint.
+This means a finding can move to a different line as the file changes and still
+be recognised as the same issue.
+
+This is the same mechanism that lets [baselines](baselines.md) track findings
+across edits. See the [Fingerprints](baselines.md#fingerprints) section in
+`baselines.md` for details.
